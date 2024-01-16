@@ -1,6 +1,6 @@
 /* HEADER */
 header.App-header{
-	height: 100px;
+	height: 85px;
 	padding: 10px;
 
 	display: flex;
@@ -19,8 +19,32 @@ header.App-header{
 	cursor: pointer;
 }
 
+.drop_down{
+	border-radius: 3px;
+	backdrop-filter: blur(10px);
+
+	position: absolute;
+	top: 50px;
+	right: 5%;
+}
+
+ul{
+	list-style-type: none;
+	padding: 5px 20px;
+}
+
+ul li{
+	padding: 3px;
+	margin: 0;
+}
+
 .navlink{
 	color: black;
+	text-decoration: none;
+}
+
+ul .navlink{
+	color: rgb(197, 145, 14);
 	text-decoration: none;
 }
 .active{
@@ -44,7 +68,7 @@ header.App-header{
 /* PIZZAS */
 img{
   	width: 100%;
-  	height: 250px;
+  	height: 300px;
   	object-fit: cover;
 }
 
