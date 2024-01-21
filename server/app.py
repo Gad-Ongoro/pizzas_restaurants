@@ -29,7 +29,7 @@ def home():
 class Rests(Resource):
     def get(self):
         rests = [restaurant.to_dict() for restaurant in Restaurants.query.all()]
-        response = make_response(jsonify(rests))        
+        response = make_response(jsonify(rests), 200)        
         return response
 
 api.add_resource(Rests, '/restaurants', endpoint='restaurants')
@@ -38,7 +38,7 @@ class Rest_by_id(Resource):
     def get(self, id):
         rest = Restaurants.query.filter_by(rest_id = id).first()
         
-        response = make_response(jsonify(rest.to_dict()))
+        response = make_response(jsonify(rest.to_dict()), 200)
         
         return response
     
@@ -51,17 +51,22 @@ class Rest_by_id(Resource):
                 db.session.delete(restpiz)
                 db.session.commit()
             db.session.delete(rest)
-            db.session.commit()
+            db.session.commit()            
+            response = make_response({}, 200)
+            return response
+        else:
+            response = make_response({"error": "Restaurant not found"}, 200)
+            return response
 
 api.add_resource(Rest_by_id, '/restaurants/<int:id>')
 
-# @app.route('/restaurants/<int:id>')
-# def del_restaurant(id):
-#     pass
-
-# @app.route("/pizzas")
-# def get_pizzas():
-#     pass
+class Handle_Pizzas(Resource):
+    def get(self):
+        pizzas = [pizza.to_dict() for pizza in Pizzas.query.all()]    
+        response = make_response(jsonify(pizzas))
+        return response
+    
+api.add_resource(Handle_Pizzas, '/pizzas')
 
 # @app.route('/restaurant_pizzas')
 # def post_rest_pizzas():
