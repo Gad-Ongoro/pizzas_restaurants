@@ -42,13 +42,18 @@ class Rest_by_id(Resource):
         
         return response
     
+    def delete(self, id):
+        rest = Restaurants.query.filter_by(rest_id = id).first()
+        rest_piz = RestaurantPizza.query.filter_by(rest_by_id = id).all()
+        
+        if rest:
+            for restpiz in rest_piz:
+                db.session.delete(restpiz)
+                db.session.commit()
+            db.session.delete(rest)
+            db.session.commit()
+
 api.add_resource(Rest_by_id, '/restaurants/<int:id>')
-    
-
-
-# @app.route('/restaurants/<int:id>')
-# def get_restaurant(id):
-#     pass
 
 # @app.route('/restaurants/<int:id>')
 # def del_restaurant(id):
