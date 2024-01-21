@@ -68,9 +68,18 @@ class Handle_Pizzas(Resource):
     
 api.add_resource(Handle_Pizzas, '/pizzas')
 
-# @app.route('/restaurant_pizzas')
-# def post_rest_pizzas():
-#     pass
+class Rest_Pizzas(Resource):
+    def post():
+        data = request.get_json()        
+        new_rest_piz = RestaurantPizza(price = data.get('price'), pizza_id = data.get('pizza_id', restaurant_id = data.get('restaurant_id')))        
+        db.session.add(new_rest_piz)
+        db.session.commit()
+        
+        response = make_response(jsonify(new_rest_piz), 201)
+        
+        return response
+        
+api.add_resource(Rest_Pizzas, '/restaurant_pizzas')
 
 if __name__ == "__main__":
     app.run(port = 5500, debug = True)

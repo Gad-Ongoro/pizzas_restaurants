@@ -13,11 +13,11 @@ class Pizzas(db.Model, SerializerMixin):
     
     serialize_rules = ('-rest_pizzas.pizza', )
       
-    id = db.Column(db.Integer, primary_key = True)
+    piz_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
     ingredients = db.Column(db.String)
     
-    rest_pizzas = db.relationship("restaurant_pizza", backref = 'pizza')
+    rest_pizzas = db.relationship("RestaurantPizza", backref = 'pizza')
     
     
 class Restaurants(db.Model, SerializerMixin):
@@ -25,19 +25,19 @@ class Restaurants(db.Model, SerializerMixin):
     
     serialize_rules = ('-rest_pizzas.restaurant', )
     
-    id = db.Column(db.Integer, primary_key = True)
+    rest_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
     address = db.Column(db.String(100))
     rating = db.Column(db.Integer)
     
-    rest_pizzas = db.relationship("restaurant_pizza", backref = 'restaurant')    
+    rest_pizzas = db.relationship("RestaurantPizza", backref = 'restaurant')    
     
 class RestaurantPizza(db.Model, SerializerMixin):
     __tablename__ = "restaurant_pizza"
     
     serialize_rules = ('-pizza.rest_pizzas', '-restaurant.rest_pizzas')
     
-    id = db.Column(db.Integer, primary_key = True)
+    rest_piz_id = db.Column(db.Integer, primary_key = True)
     price = db.Column(db.Integer)
-    pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'))
-    rest_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
+    pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.piz_id'))
+    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.rest_id'))
