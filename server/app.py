@@ -44,12 +44,13 @@ class Rest_by_id(Resource):
     
     def delete(self, id):
         rest = Restaurants.query.filter_by(rest_id = id).first()
-        rest_piz = RestaurantPizza.query.filter_by(rest_by_id = id).all()
+        rest_piz = RestaurantPizza.query.filter_by(rest_piz_id = id).all()
         
         if rest:
-            for restpiz in rest_piz:
-                db.session.delete(restpiz)
-                db.session.commit()
+            if rest_piz:
+                for restpiz in rest_piz:
+                    db.session.delete(restpiz)
+                    db.session.commit()
             db.session.delete(rest)
             db.session.commit()            
             response = make_response({}, 200)
