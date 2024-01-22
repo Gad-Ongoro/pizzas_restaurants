@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import DropDownMenu from './DropDownMenu';
 
 export default function Header() {
+    let navigate = useNavigate()
     let [hamburger_menu, setHamburgerMenu_state] = useState(false)
+    let [myBool, setMyBool] = useState(true)
 
     function handleclick_humburger_img(){
         setHamburgerMenu_state(current => !current)

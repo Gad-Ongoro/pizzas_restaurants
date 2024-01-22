@@ -41,6 +41,8 @@ ul li{
 .navlink{
 	color: black;
 	text-decoration: none;
+	border: 2px solid rgb(197, 145, 14);
+	border-radius: 1000px;
 }
 
 ul .navlink{
@@ -59,8 +61,9 @@ ul .navlink{
 
 	position: absolute;
 	top: 100%;
-	left: 0;
-	width: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
 	height: 2px;
 }
 
@@ -75,7 +78,12 @@ img{
 .pizza_list, .restaurants_list{
 	display: flex;
 	flex-wrap: wrap;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.del{
+	cursor: pointer;
+	text-align: center;
+	width: 30%;
 }
