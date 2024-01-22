@@ -19,10 +19,18 @@ export default function Header() {
                 onClick={handleclick_humburger_img} 
                 alt="NA">                    
                 </img>
-                <h1>
-                    <NavLink className='navlink' to='/pizzas' exact>Pizzas</NavLink> &  
-                    <NavLink className='navlink' to='/restaurants' exact>Restaurants</NavLink>
-                </h1>
+                <div className='d-flex gap-5'>
+                    <h2>
+                        <NavLink className='navlink' to='/pizzas' exact>Pizzas</NavLink> &  
+                        <NavLink className='navlink' to='/restaurants' exact>Restaurants</NavLink>
+                    </h2>
+                    <h2>
+                        <NavLink className='navlink' to='/restaurants_pizzas' exact>Restaurants Pizzas</NavLink>
+                    </h2>
+                    <h2>
+                        <NavLink className='navlink' to='/restaurants_pizzas_post' exact>Restaurants Pizzas Post</NavLink>
+                    </h2>
+                </div>
                 <h3 className='drop_down'>
                     {hamburger_menu && <DropDownMenu></DropDownMenu>}
                 </h3>

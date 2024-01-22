@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default function Pizzas({pizzas}) {
-	console.log(pizzas);
-
+	
 	let pizza_list = pizzas.map(pizza => {
 		return(
 			<div key={pizza.rest_id} className='card m-2 p-2'>

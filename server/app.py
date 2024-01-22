@@ -70,6 +70,12 @@ class Handle_Pizzas(Resource):
 api.add_resource(Handle_Pizzas, '/pizzas')
 
 class Rest_Pizzas(Resource):
+    def get(self):
+        rest_pizzas = [respiz.to_dict() for respiz in RestaurantPizza.query.all()]
+        response = make_response(jsonify(rest_pizzas))
+        return response
+        pass
+    
     def post():
         data = request.get_json()        
         new_rest_piz = RestaurantPizza(price = data.get('price'), pizza_id = data.get('pizza_id', restaurant_id = data.get('restaurant_id')))        
