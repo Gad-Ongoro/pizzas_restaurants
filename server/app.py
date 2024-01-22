@@ -76,9 +76,10 @@ class Rest_Pizzas(Resource):
         return response
         pass
     
-    def post():
-        data = request.get_json()        
-        new_rest_piz = RestaurantPizza(price = data.get('price'), pizza_id = data.get('pizza_id', restaurant_id = data.get('restaurant_id')))        
+    def post(self):
+        data = request.get_json()
+        new_rest_piz = RestaurantPizza(price = data['price'], pizza_id = data['pizza_id'], restaurant_id = data['restaurant_id'])
+        # new_rest_piz = RestaurantPizza(price = request.form.get('price'), pizza_id = request.form.get('pizza_id'), restaurant_id = request.form.get('restaurant_id'))
         db.session.add(new_rest_piz)
         db.session.commit()
         

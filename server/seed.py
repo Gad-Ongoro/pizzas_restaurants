@@ -35,6 +35,6 @@ with app.app_context():
 # """ RESTAURANT_PIZZA """
     RestaurantPizza.query.delete()
     for i in range(0, 10):
-        new_rest_piz = RestaurantPizza(price = ri(20, 50), pizza_id = rc(Pizzas.query.all()).piz_id, restaurant_id = rc(Restaurants.query.all()).rest_id)
+        new_rest_piz = RestaurantPizza(price = ri(1, 30), pizza_id = rc(Pizzas.query.all()).piz_id, restaurant_id = rc(Restaurants.query.all()).rest_id)
         db.session.add(new_rest_piz)
         db.session.commit()
